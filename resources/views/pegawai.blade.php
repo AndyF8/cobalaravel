@@ -93,6 +93,17 @@
             <h1 class="my-4">Halaman Data Pegawai</h1>
         </center>
 
+        {{-- form search data --}}
+            <div class="col-4 my-4">
+                @csrf
+                <form class="d-flex" action="/pegawai/cari" method="GET">
+                    <input class="form-control me-2" type="text" name="cari"
+                    placeholder="Cari data pegawai .." value="{{ old('cari') }}">
+                    <button class="btn btn-outline-success" type="submit">Cari</button>
+
+                </form>
+            </div>
+
         
         <div class="card mb-3">
             {{-- membuat tabel --}}
@@ -128,6 +139,17 @@
         <br>
         {{ $pegawai->links() }}
     </div>
+
+    @if ($pegawai->count() > 0)
+    @else
+        <center>
+            <font color="red">
+                <h3>!! TIdak ditemukan data yang sesuai dengan kata kunci !!</h3>
+            </font>
+        
+        </center>
+    @endif
+
 </body>
 
 </html>

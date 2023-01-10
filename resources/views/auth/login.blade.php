@@ -71,6 +71,11 @@
                             <img src = "https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png"
                             style="margin-left:3em;">
                         </a>
+
+                        <a href="{{ url('auth/facebook') }}" class="btn btn-lg btn-social btn-facebook">
+                             <img src ="https://www.freeiconspng.com/uploads/facebook-login-button-png-11.png" width="350" alt="Facebook login button png">
+                        </a>
+                                            
                 </div>
             </div>
         </div>

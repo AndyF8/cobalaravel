@@ -14,16 +14,33 @@ use PDF;
 
 class MahasiswaController extends Controller
 {
-    public function index(Request $request)
+    public function index()//Request $request
     {
-        if($request->has('cari')){
-            $data_mahasiswa = Mahasiswa::where('nama','LIKE','%'. $request->cari .'%')->paginate(5);
-        }else{
-            $data_mahasiswa = DB::table('mahasiswa')->paginate(5);
-        }
+        //if($request->has('cari')){
+           // $data_mahasiswa = Mahasiswa::where('nama','LIKE','%'. $request->cari .'%')->paginate(5);
+        //}else{
+            //$data_mahasiswa = DB::table('mahasiswa')->paginate(5);
+        //}
+
+
+
+        $data_mahasiswa = DB::table('mahasiswa')->paginate(5);
+
+
 
         
         return view('mahasiswa.index',['data_mahasiswa' => $data_mahasiswa]);
+    }
+
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+
+        $mahasiswa = DB::table('mahasiswa')
+            ->where('nama', 'like', "%" . $cari . "%")
+            ->paginate();
+
+        return view('mahasiswa.index', ['data_mahasiswa' => $mahasiswa]);
     }
 
     public function create(Request $request)
